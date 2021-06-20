@@ -39,7 +39,7 @@
         //source index
         schema: { type: "int" },
         init() {
-          this.sceneEl.addEventListener("loaded", this.postSceneLoad.bind(this));
+          this.el.sceneEl.addEventListener("loaded", this.postSceneLoad.bind(this));
         },
         postSceneLoad() {
           this.resonanceSource = this.el.sceneEl.components["myscene"].resonanceSources[this.data];
