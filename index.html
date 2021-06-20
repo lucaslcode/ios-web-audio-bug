@@ -12,7 +12,7 @@
           this.audioContext = new window.AudioContext();
           this.tick = AFRAME.utils.throttleTick(this.tick, 50, this);
           this.resonanceAudio = new ResonanceAudio(this.audioContext, { ambisonicOrder: 3 });
-          resonanceAudio.output.connect(this.audioContext.destination);
+          this.resonanceAudio.output.connect(this.audioContext.destination);
 
           this.resonanceSources.push(this.resonanceAudio.createSource());
           const audioEl0 = document.querySelector("#audio0");
