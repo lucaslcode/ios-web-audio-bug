@@ -84,12 +84,14 @@
         })
 
         //switch to play when loaded
-        const audioEl = document.querySelector("audio")
-        //iOS seems to need small timeout to load
-        setTimeout(() => audioEl.load(), 50);
-        audioEl.addEventListener("canplaythrough", () => {
-          document.querySelector("#my-button").innerText = "Play"
-          document.querySelector("#my-button").disabled = false;
+        const audioEls = document.querySelectorAll("audio");
+        audioEls.forEach((audioEl) => {
+          //iOS seems to need small timeout to load
+          setTimeout(() => audioEl.load(), 50);
+          audioEl.addEventListener("canplaythrough", () => {
+            document.querySelector("#my-button").innerText = "Play"
+            document.querySelector("#my-button").disabled = false;
+          })
         })
       });
 
