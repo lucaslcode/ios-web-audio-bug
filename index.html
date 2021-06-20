@@ -58,10 +58,10 @@
     </script>
   </head>
   <body>
-    <audio id="audio0" src="music.mp4" preload="auto"></audio>
-    <audio id="audio1" src="music.mp4" preload="auto"></audio>
-    <audio id="audio2" src="music.mp4" preload="auto"></audio>
-    <audio id="audio3" src="music.mp4" preload="auto"></audio>
+    <audio id="audio0" src="music0.mp4" preload="auto"></audio>
+    <audio id="audio1" src="music1.mp4" preload="auto"></audio>
+    <audio id="audio2" src="music2.mp4" preload="auto"></audio>
+    <audio id="audio3" src="music3.mp4" preload="auto"></audio>
     <a-scene myscene embedded>
       <a-box source="0" position="-4 0 0"></a-box>
       <a-box source="1" position="4 0 0"></a-box>
@@ -85,12 +85,16 @@
 
         //switch to play when loaded
         const audioEls = document.querySelectorAll("audio");
+        let numLoaded = 0;
         audioEls.forEach((audioEl) => {
           //iOS seems to need small timeout to load
           setTimeout(() => audioEl.load(), 50);
           audioEl.addEventListener("canplaythrough", () => {
-            document.querySelector("#my-button").innerText = "Play"
-            document.querySelector("#my-button").disabled = false;
+            numLoaded += 1;
+            if (numLoaded >= 4) {
+              document.querySelector("#my-button").innerText = "Play"
+              document.querySelector("#my-button").disabled = false;
+            }
           })
         })
       });
