@@ -10,27 +10,27 @@
         init() {
           this.resonanceSources = [];
           this.audioContext = new window.AudioContext();
-          const resonanceAudio = new ResonanceAudio(this.audioContext, { ambisonicOrder: 5 });
+          const resonanceAudio = new ResonanceAudio(this.audioContext, { ambisonicOrder: 3 });
           resonanceAudio.output.connect(this.audioContext.destination);
 
           this.resonanceSources.push(resonanceAudio.createSource());
           const audioEl0 = document.querySelector("#audio0");
-          const audioSource0 = this.audioContext.createMediaElementSource(audioEl0);
+          const audioElSource0 = this.audioContext.createMediaElementSource(audioEl0);
           audioElSource0.connect(this.resonanceSources[0].input);
           
           this.resonanceSources.push(resonanceAudio.createSource());
           const audioEl1 = document.querySelector("#audio1");
-          const audioSource1 = this.audioContext.createMediaElementSource(audioEl1);
+          const audioElSource1 = this.audioContext.createMediaElementSource(audioEl1);
           audioElSource1.connect(this.resonanceSources[1].input);
           
           this.resonanceSources.push(resonanceAudio.createSource());
           const audioEl2 = document.querySelector("#audio2");
-          const audioSource2 = this.audioContext.createMediaElementSource(audioEl2);
+          const audioElSource2 = this.audioContext.createMediaElementSource(audioEl2);
           audioElSource2.connect(this.resonanceSources[2].input);
           
           this.resonanceSources.push(resonanceAudio.createSource());
           const audioEl3 = document.querySelector("#audio3");
-          const audioSource3 = this.audioContext.createMediaElementSource(audioEl3);
+          const audioElSource3 = this.audioContext.createMediaElementSource(audioEl3);
           audioElSource3.connect(this.resonanceSources[3].input);
         }
       });
@@ -43,8 +43,9 @@
         },
         postSceneLoad() {
           this.resonanceSource = this.el.sceneEl.components["myscene"].resonanceSources[this.data];
-          this.el.object3D.getWorldPosition(this.globalPosition);
-          this.resonanceSource.setPosition(this.globalPosition.x, this.globalPosition.y, this.globalPosition.z);
+          const globalPosition = new THREE.Vector3();
+          this.el.object3D.getWorldPosition(globalPosition);
+          this.resonanceSource.setPosition(globalPosition.x, globalPosition.y, globalPosition.z);
         },
       });
     </script>
