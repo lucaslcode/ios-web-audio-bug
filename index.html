@@ -42,7 +42,7 @@
           this.el.addEventListener("loaded", this.postLoad.bind(this));
         },
         postLoad() {
-          this.resonanceSource = this.sceneEl.components["myscene"].resonanceSources[this.data];
+          this.resonanceSource = this.el.sceneEl.components["myscene"].resonanceSources[this.data];
           this.el.object3D.getWorldPosition(this.globalPosition);
           this.resonanceSource.setPosition(this.globalPosition.x, this.globalPosition.y, this.globalPosition.z);
         },
