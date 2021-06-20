@@ -78,7 +78,7 @@
         document.querySelector("#my-button").addEventListener("click", () => {
           document.querySelectorAll("audio").forEach((audioEl, index) => {
             document.querySelector("[myscene]").components["myscene"].audioContext.resume();
-            setTimeout(() => audioEl.play(), index * 1000);
+            audioEl.play();
           })
           document.querySelector("#button-container").remove();
         })
