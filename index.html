@@ -61,7 +61,7 @@
       <a-box source="2" position="0 0 -4"></a-box>
       <a-box source="3" position="0 0 4"></a-box>
     </a-scene>
-    <div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 9999;">
+    <div id="button-container" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 9999;">
       <button id="my-button" disabled>Loading...</button>
     </div>
 
@@ -71,7 +71,8 @@
         document.querySelector("#my-button").addEventListener("click", () => {
           document.querySelectorAll("audio").forEach((audioEl, index) => {
             document.querySelector("[myscene]").components["myscene"].audioContext.resume();
-            setTimeout(audioEl.play(), index * 1000);
+            setTimeout(() => audioEl.play(), index * 1000);
+            document.querySelector("#button-container").remove();
           })
         })
 
